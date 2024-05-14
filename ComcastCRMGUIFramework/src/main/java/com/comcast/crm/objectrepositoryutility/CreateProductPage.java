@@ -1,12 +1,11 @@
 package com.comcast.crm.objectrepositoryutility;
 
+import org.testng.annotations.Test;
+
 public class CreateProductPage {
 
-	// code 1
-	// code 2
-	// code 3
-
-	// code 1
-	// code 2
-	// code 3
+	@Test
+	public void demo() {
+		System.out.println("pgm1");
+	}
 }
