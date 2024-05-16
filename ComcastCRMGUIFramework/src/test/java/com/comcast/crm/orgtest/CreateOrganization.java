@@ -34,16 +34,17 @@ public class CreateOrganization extends BaseClass {
 		ListImpClass.test.log(Status.INFO,"navigate to cfrete org page");
 
 		cnop.createOrg(orgName);
+		Thread.sleep(2000);
 		ListImpClass.test.log(Status.INFO,"create org");
 
-		cnop.getSaveBtn().click();
-		hp.getAdminImg();
-		hp.getSignOutbtn().click();
+		//cnop.getSaveBtn().click();
+//		hp.getAdminImg();
+//		hp.getSignOutbtn().click();
 	}
 
 	@Test
 
-	public void createOrgWithIndustry() throws EncryptedDocumentException, IOException {
+	public void createOrgWithIndustry() throws EncryptedDocumentException, IOException, InterruptedException {
 		wLib.waitForPageToLoad(driver);
 
 		String orgName = eLib.getDataFromExcel("org", 4, 2) + jLib.getRandomNumber();
@@ -62,9 +63,10 @@ public class CreateOrganization extends BaseClass {
 		cnop.selectAccountType(type);
 
 		cnop.getSaveBtn().click();
-
-		hp.getAdminImg();
-		hp.getSignOutbtn().click();
+		Thread.sleep(2000);
+//
+//		hp.getAdminImg();
+//		hp.getSignOutbtn().click();
 	}
 	
 	@Test
@@ -84,9 +86,10 @@ public class CreateOrganization extends BaseClass {
 		cnop.getOrgNameEdt().sendKeys(orgName);
 		cnop.getPhone().sendKeys(phonenum);
 		cnop.getSaveBtn().click();
-
-		hp.getAdminImg();
-		hp.getSignOutbtn().click();
+		Thread.sleep(2000);
+//
+//		hp.getAdminImg();
+//		hp.getSignOutbtn().click();
 
 	}
 }
