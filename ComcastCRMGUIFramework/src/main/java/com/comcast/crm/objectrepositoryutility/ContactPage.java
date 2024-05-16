@@ -11,19 +11,24 @@ import org.openqa.selenium.support.PageFactory;
 
 public class ContactPage {
 	WebDriver driver = null;
+	public ContactPage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+	
 	@FindBy(linkText = "Contacts")
 	private WebElement contactLink;
 
 	@FindBy(xpath = "//img[@title='Create Contact...']")
 	private WebElement createContactBtn;
 
-	@FindBy(name = "support_start_date")
+	@FindBy(xpath = "//input[@name='support_start_date']")
 	private WebElement startDate;
 
 	@FindBy(name = "support_end_date")
 	private WebElement endDate;
 
-	@FindBy(xpath = "//input[@name='lastname']")
+	@FindBy(name = "lastname")
 	private WebElement lastnameTextfield;
 
 	@FindBy(className = "dvHeaderText")
@@ -60,18 +65,17 @@ public class ContactPage {
 		return endDate;
 	}
 
-//	public void createContactWithSupportDate(String lastname, String startdate, String enddate) {
-////		contactLink.click();
-////		lastnameTextfield.sendKeys(lastname);
-////		startDate.sendKeys(startdate);
-////		endDate.sendKeys(enddate);
-//		saveBtn.click();
-//	}
-
-	public ContactPage(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
+	public void createContactWithSupportDate(String lastname, String startdate, String enddate) throws InterruptedException {
+		contactLink.click();
+		createContactBtn.click();
+		Thread.sleep(2000);
+		lastnameTextfield.sendKeys(lastname);
+		startDate.sendKeys(startdate);
+		endDate.sendKeys(enddate);
+		//saveBtn.click();
 	}
+
+	
 
 	public void createContact(String lastname) {
 		createContactBtn.click();

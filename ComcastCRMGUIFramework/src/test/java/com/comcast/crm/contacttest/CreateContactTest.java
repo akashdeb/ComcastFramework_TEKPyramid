@@ -21,7 +21,7 @@ import com.comcast.crm.objectrepositoryutility.OrganizationPage;
 
 public class CreateContactTest extends BaseClass {
 	@Test(groups = "Smoke Testcase")
-	public void createContactTest() throws EncryptedDocumentException, IOException {
+	public void createContactTest() throws EncryptedDocumentException, IOException, InterruptedException {
 		String lastName = eLib.getDataFromExcel("contact", 1, 2) + jLib.getRandomNumber();
 
 		// step1: login to app
@@ -33,6 +33,7 @@ public class CreateContactTest extends BaseClass {
 		cp.getLastnameTextfield().sendKeys(lastName);
 
 		cp.getSaveBtn().click();
+		Thread.sleep(2000);
 
 		// verify header orgName Expected result
 		String actHeader = cp.getHeadermsg().getText();
@@ -78,35 +79,39 @@ public class CreateContactTest extends BaseClass {
 
 		ccwo.switchBack();
 		ccwo.getSaveBtn().click();
-		hp.getAdminImg();
-		hp.getSignOutbtn().click();
-		driver.quit();
+		Thread.sleep(2000);
+//		hp.getAdminImg();
+//		hp.getSignOutbtn().click();
+//		driver.quit();
 	}
 
 	@Test
 	public void ccwsupportdate() throws EncryptedDocumentException, IOException, InterruptedException {
 		String lastName = eLib.getDataFromExcel("contact", 1, 2) + jLib.getRandomNumber();
 
-		// step1: login to app
+		//step1: login to app
 		HomePage hp = new HomePage(driver);
 		hp.getContactLink().click();
 
 		ContactPage cp = new ContactPage(driver);
-		cp.getCreateContactBtn().click();
-		cp.createContact(lastName);
+//		cp.getCreateContactBtn().click();
+//		cp.createContact(lastName);
 
-		Actions act = new Actions(driver);
-		act.scrollToElement(cp.getStartDate());
+//		Actions act = new Actions(driver);
+//		act.scrollToElement(cp.getStartDate());
 
 		String endDate = jLib.getSystemDateYYYYMMDD();
 		String startDate = jLib.getRequiredDateYYYYMMDD(30);
-		cp.getStartDate().sendKeys(startDate);
-		cp.getEndDate().sendKeys(endDate);
+		cp.createContactWithSupportDate(lastName, startDate, endDate);
+
+		Thread.sleep(2000);
+//		cp.getStartDate().sendKeys(startDate);
+//		cp.getEndDate().sendKeys(endDate);
 
 		cp.getSaveBtn().click();
 		Thread.sleep(2000);
-		hp.getAdminImg();
-		hp.getSignOutbtn().click();
+//		hp.getAdminImg();
+//		hp.getSignOutbtn().click();
 
 	}
 
