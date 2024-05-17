@@ -51,12 +51,15 @@ public class CreateOrganization extends BaseClass {
 		String industry = eLib.getDataFromExcel("org", 4, 3);
 		String type = eLib.getDataFromExcel("org", 4, 4);
 
+		//click on organization link in the home page
 		HomePage hp = new HomePage(driver);
 		hp.getOrgLink().click();
 
+		//click on create new organization button
 		CreateNewOrganizationPage cnop = new CreateNewOrganizationPage(driver);
 		cnop.getNewOrgBtn().click();
 
+		//enter details to create new organization
 		cnop.getOrgNameEdt().sendKeys(orgName);
 		cnop.getIndustrydd().click();
 		cnop.selectIndustry(industry);
