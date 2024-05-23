@@ -6,7 +6,6 @@
 	<artifactId>ComcastCRMGUIFramework</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
-		//helloo helloo
 		<!--  
 		https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
