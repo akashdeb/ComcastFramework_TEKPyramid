@@ -9,6 +9,7 @@ import org.testng.ISuiteListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import org.testng.Reporter;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -50,15 +51,15 @@ public class ListImpClass implements ITestListener, ISuiteListener {
 	public void onTestStart(ITestResult result) {
 		System.out.println("----------"+ result.getMethod().getMethodName()+"----------");
 		 test = report.createTest(result.getMethod().getMethodName());
-		 UtilityClassObject.setTest(test);
-		 test.log(Status.INFO,result.getMethod().getMethodName()+"==>STARTED<==");
+		 Reporter.log(result.getMethod().getMethodName()+" --> execution starts");
 
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		System.out.println("==>"+ result.getMethod().getMethodName()+">==END");
-		test.log(Status.PASS,result.getMethod().getMethodName()+"==>COMPLETED<==");
+		String MethodName = result.getMethod().getMethodName();
+		test.log(Status.PASS, MethodName+"-- PAssed");
+		Reporter.log(MethodName+"-- Passed");
 	}
 
 	@Override 
@@ -74,7 +75,9 @@ public class ListImpClass implements ITestListener, ISuiteListener {
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
-		// TODO Auto-generated method stub
+		String MethodName = result.getMethod().getMethodName();
+		test.log(Status.SKIP, MethodName+" --> Skipped");
+		test.log(Status.SKIP, result.getThrowable());
 		}
 
 	@Override
